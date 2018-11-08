@@ -1,25 +1,53 @@
-## Table of Contents
-
-  1. [第一节 技术框架](#tech)
-  1. [第二节 书写规范](#coding)
-  1. [第三节 命名规范](#name)
-  
 ## 第一节 技术框架
-<a name="tech"></a>
 
 - CSS编译推荐采用 SCSS 语法。
 
 ## 第二节 书写规范
-<a name="coding"></a>
 
 #### 2.0 属性顺序
 
-- 显示属性(display)
-- 大小间距(width, height, border, padding, margin等)
-- 内容文字(color, font-size, line-height, letter-spacing, text-align等)
-- 背景(background)
-- 定位(position, top, right, float, z-index等)
-- 其他(animation, transition等)
+```
+{
+    //显示属性
+    display: block;
+    overflow: hidden;
+    opacity: .2;
+    visibility: visible;
+    //盒子属性
+    width: 100px;
+    height: 100px;
+    background: #aba6a6;
+    border: 10px solid red;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px black;
+    box-reflect: below;
+    //文字属性
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: bolder;
+    text-align: center;
+    direction: ltr;
+    writing-mode: vertical-lr;
+    //定位属性
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    float: right;
+    //动画属性
+    transform: translateX(.1);
+    transition: height ease-in 2s;
+    animation: slideUp 1s ease-in;
+    //其他
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    ...etc
+}
+```
 
 #### 2.1 选择器
 
@@ -39,7 +67,7 @@
  }
 ```
 
-> [强制] 当构建选择器时应该使用清晰， 准确和有语义的class(类)名。不要使用标签选择器。 如果你只关心你的class(类)名
+> [强制] 当构建选择器时应该使用清晰， 准确和有语义的class(类)名。不要使用标签选择器。
 
 ```
  /* good */
@@ -48,25 +76,8 @@ div.content > header.content-header > h2.title {
 }
 
  /* bad */
-.content > .content-header > .title {
+div > header > h2 {
   font-size: 2em;
-}
-```
-
-> [建议] 每个选择器和属性声明总是使用新的一行
-
-```
- /* good */
-h1,
-h2,
-h3 {
-  font-weight: normal;
-  line-height: 1.2;
-}
-
- /* bad */
-a:focus, a:active {
-  position: relative; top: 1px;
 }
 ```
 
@@ -85,29 +96,6 @@ a:focus, a:active {
     font-family: arial, sans-serif;
     font-size: 12px;
     line-height: 1.5;
-}
-```
-
-> [建议] 使用 border / margin / padding 等缩写时，应注意隐含值对实际数值的影响，确实需要设置多个方向的值时才使用缩写
-
-```
-/* good */
-.page {
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.featured {
-    border-color: #69c;
-}
-
-/* bad */
-.page {
-    margin: 5px auto; /* introducing redundancy */
-}
-
-.featured {
-    border: 1px solid #69c; /* introducing redundancy */
 }
 ```
 
@@ -157,11 +145,11 @@ panel {
 
 #### 2.5 url()
 
-> [强制] url() 函数中的路径不加引号
+> [强制] url() 函数中的路径加引号
 
 ```
 body {
-    background: url(bg.png);
+    background: url("bg.png");
 }
 ```
 
@@ -183,17 +171,17 @@ body {
 
 #### 2.7 颜色
 
-> [建议] 颜色值最好不要使用命名色值,在可能的情况下，使用3个字符的十六进制表示法。
+> [建议] 颜色值最好不要使用命名色值,在可能的情况下，使用6个字符的十六进制表示法。
 
 ```
 /* good */
 .success {
-    background-color: #aca;
+        background-color: #aaccaa;
 }
 
 /* bad */
 .success {
-    background-color: #aaccaa;
+    background-color: #aca;
 }
 ```
 
@@ -281,20 +269,20 @@ h1 {
 transform: translate(npx, npx);
 transform: scale(n);
 transform: rotate(ndeg);
-opacity: 0..1;
+opacity: 0.1;
 ```
 
-**[⬆ back to top](#table-of-contents)**
 ## 第三节 命名规范
-<a name="name"></a>
 
 #### 3.0 文件命名
 
 ```
-主要的 main　　
-基础框架 base　　
+主要 main　　
+基础 base　　
 公共 common
-布局 layout　
+布局 layouts　
+页面 pages
+组件 components
 主题 themes　
 打印 print
 ```
@@ -307,14 +295,12 @@ opacity: 0..1;
 
 #### 3.2 命名前缀
 
-- [建议] 以VUE单页组件样式为例,可在组件第一层div上定义一个命名空间,开启scoped
-- [强制] 通用样式命名为common
-- [强制] sass所要用的变量及函数,命名为main
+- [建议] 以VUE单页组件样式为例,可在组件第一层div上定义一个命名空间,NAME-page
 
 ```
 //home.vue
 <template>
-    <div class="home-wrapper">
+    <div class="home-page">
         content
     </div>
 </template>
