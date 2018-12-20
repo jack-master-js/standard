@@ -71,7 +71,7 @@
 
 ```
  /* good */
-div.content > header.content-header > h2.title {
+.content > .content-header > .title {
   font-size: 2em;
 }
 
@@ -295,12 +295,21 @@ opacity: 0.1;
 
 #### 3.2 命名前缀
 
-- [建议] 以VUE单页组件样式为例,可在组件第一层div上定义一个命名空间,NAME-page
+- [建议] 以VUE单页组件样式为例：
+- 1.页面以NAME-page的方式命名
+- 2.组件的命名统一用中横线，类名和组件名保持一致
 
 ```
-//home.vue
+//page: home.vue
 <template>
     <div class="home-page">
+        content
+    </div>
+</template>
+
+//component: nav-bar.vue
+<template>
+    <div class="nav-bar">
         content
     </div>
 </template>
@@ -315,28 +324,29 @@ opacity: 0.1;
 头：header　　
 尾：footer　　
 栏目标题：title　　
-内容：content/container　　
+副标题：sub-title　　
+内容：content　
 导航：nav　　
 侧栏：sidebar　　
 栏目：column　　
-页面外围控制整体佈局宽度：wrapper　　
+大包裹：container
+小包裹：wrapper　　
 左右中：left right center　　
-登录条：loginbar　　
+登录条：login　　
 标志：logo　　
 广告：banner　　
 页面主体：main　　
 热点：hot　　
 新闻：news　　
 下载：download　　
-子导航：subnav　　
+子导航：sub-nav　　
 菜单：menu　　
-子菜单：submenu　　
+子菜单：sub-menu　　
 搜索：search　　
 友情链接：friend-link　　
 页脚：footer　　
 版权：copyright　　
-滚动：scroll　　
-内容：content　　
+滚动：scroll　　　
 标签：tags　　
 文章列表：list　　
 提示信息：msg　　
